@@ -48,7 +48,7 @@
         ddText: 'Sortieren',
         renderTo: {/literal}'tv{$tv->id}-cb'{literal}
     });
-    var ddrow{/literal}{$tv->id}{literal} = new Ext.dd.DropTarget(
+  var ddrow{/literal}{$tv->id}{literal} = new Ext.dd.DropTarget(
         grid{/literal}{$tv->id}{literal}.getView().mainBody, {
         ddGroup: 'zusatzInhalteGroup',
         notifyDrop: function(dd, e, data) {
@@ -56,10 +56,16 @@
             var rows = sm.getSelections();
             var cindex = dd.getDragData(e).rowIndex;
             var store = grid{/literal}{$tv->id}{literal}.getStore();
+			var checkbox_id = null;
+			var cb = null;
             if (sm.hasSelection()) {
                 for (i = 0; i < rows.length; i ++) {
-                    store.remove(store.getById(rows[i].id));
+                    checkbox_id = store.getById(rows[i].id).data.id;
+					cb_checked = Ext.get(checkbox_id).dom.checked;
+					store.remove(store.getById(rows[i].id));
                     store.insert(cindex,rows[i]);
+					Ext.get(checkbox_id).dom.checked=cb_checked;
+				
                 }
                 sm.selectRecords(rows);
             }
