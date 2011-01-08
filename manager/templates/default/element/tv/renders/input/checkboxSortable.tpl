@@ -36,6 +36,9 @@
                 {id: 'checked', header: 'Aktiv', dataIndex: 'checked', width: 80}
             ]
         }),
+        listeners: {
+                    'click': {fn:MODx.fireResourceFormChange, scope:this}
+        },
         viewConfig: {
             forceFit: true
         },
