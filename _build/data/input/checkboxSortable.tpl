@@ -32,8 +32,8 @@
                 sortable: false
             },
             columns: [
-                {id: 'label', header: 'Name', dataIndex: 'label', width: 420},
-                {id: 'checked', header: 'Aktiv', dataIndex: 'checked', width: 80}
+                {id: 'label', header: '{/literal}{$checkboxsortable.cbs_name}{literal}', dataIndex: 'label', width: 420},
+                {id: 'checked', header: '{/literal}{$checkboxsortable.cbs_active}{literal}', dataIndex: 'checked', width: 80}
             ]
         }),
         listeners: {
@@ -48,10 +48,10 @@
         frame: true,
         enableDragDrop: true,
         ddGroup: 'zusatzInhalteGroup',
-        ddText: 'Sortieren',
+        ddText: '{/literal}{$checkboxsortable.cbs_sort}{literal}',
         renderTo: {/literal}'tv{$tv->id}-cb'{literal}
     });
-  var ddrow{/literal}{$tv->id}{literal} = new Ext.dd.DropTarget(
+    var ddrow{/literal}{$tv->id}{literal} = new Ext.dd.DropTarget(
         grid{/literal}{$tv->id}{literal}.getView().mainBody, {
         ddGroup: 'zusatzInhalteGroup',
         notifyDrop: function(dd, e, data) {
